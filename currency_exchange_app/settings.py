@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     "djmoney",
     "djmoney.contrib.exchange",
     "wallet",
+    "transactions",
     "allauth",
     "allauth.account",
     "allauth.socialaccount",
@@ -162,3 +163,8 @@ AUTHENTICATION_BACKENDS = [
 ]
 
 LOGIN_REDIRECT_URL = "/admin"  # Change this to '/wallet'
+
+
+# DJMoney
+
+DEFAULT_CURRENCY = "KES"
