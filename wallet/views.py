@@ -5,6 +5,8 @@ from django.views.generic.detail import DetailView
 from django.views.generic.edit import FormMixin
 from django.views.generic.edit import UpdateView
 from django.views.generic.list import ListView
+from djmoney.contrib.exchange.models import convert_money
+from djmoney.money import Money
 
 from wallet.forms import WalletForm
 from wallet.models import Wallet
@@ -42,3 +44,15 @@ class WalletUpdate(UpdateView):
     @method_decorator(login_required)
     def dispatch(self, request, *args, **kwargs):
         return super().dispatch(request, *args, **kwargs)
+
+    def post(self, request, *args, **kwargs):
+        self.object = self.get_object()
+        new_curr = request.POST.get("default_currency")
+        new_bal = convert_money(
+            Money(self.object.balance, self.object.default_currency), new_curr
+        )
+
+        self.object.balance = new_bal.amount
+        self.object.save()
+
+        return super().post(request, *args, **kwargs)

@@ -1,16 +1,20 @@
 {% extends "base.html" %}
 <h3> My Wallets</h3>
 {% block content %}
-    <ul>
-        <!-- Iterate over object_list -->
-        {% for object in object_list %}
-            <a href="{% url 'wallet_detail' pk=object.id %}">{{ object.name }}</a>
-            <li>{{ object.default_currency }}</li>
-            <li>{{ object.balance }}</li>
+    <div class="mx-auto" style="margin-top: 4rem;">
+        <h3> Wallets</h3>
+        <br>
+        <ul>
+            <!-- Iterate over object_list -->
+            {% for object in object_list %}
+                <a href="{% url 'wallet_detail' pk=object.id %}">{{ object.name }}</a>
+                <li>{{ object.default_currency }}</li>
+                <li>{{ object.balance }}</li>
 
-            <hr/>
-            {% empty %}
-            <li>No wallets created for you yet.</li>
-        {% endfor %}
-    </ul>
+                <hr/>
+                {% empty %}
+                <li>No wallets created for you yet.</li>
+            {% endfor %}
+        </ul>
+    </div>
 {% endblock content %}
