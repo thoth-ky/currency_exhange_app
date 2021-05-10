@@ -1,0 +1,15 @@
+.env
+*.pyc
+__pycache__/*
+htmlcov/*
+.coverage
+.pytest_cache/*
+media/*
+staticfiles/*
+celerybeat-schedule.db
+.vscode/*
+.pre-commit-config.yaml
+README.md
+pytest.ini
+.coveragerc
+.circleci/*

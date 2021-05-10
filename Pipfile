@@ -22,6 +22,9 @@ django-crispy-forms = "*"
 celery = "==5.0"
 django-celery-results = "==2.0.1"
 redis = "*"
+gunicorn = "*"
+whitenoise = "==5.2.0"
+gevent = "*"
 
 [requires]
 python_version = "3.9"

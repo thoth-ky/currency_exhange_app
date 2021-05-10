@@ -1,0 +1,11 @@
+build:
+  docker:
+    web: Dockerfile
+
+run:
+  web: gunicorn --worker-class gevent -w 4 -b "0.0.0.0:8000" whistle.wsgi --log-level DEBUG
+release:
+  image: web
+  command:
+    - python manage.py collectstatic --no-input
+    - python manage.py migrate
