@@ -14,7 +14,6 @@ workflows:
     jobs:
       - build-and-test
 
-
 jobs:
   build-and-test:  # This is the name of the job, feel free to change it to better match what you're trying to do!
     # These next lines defines a Docker executors: https://circleci.com/docs/2.0/executor-types/
@@ -37,6 +36,5 @@ jobs:
           key: deps9-{{ .Branch }}-{{ checksum "Pipfile.lock" }}
       - run:
           command: |
-            sudo pip install pipenv
-            pipenv install
+            sudo pip install -r requirements.tx
             pytest
