@@ -12,6 +12,11 @@ jobs:
   build-and-test:
     docker:
       - image: cimg/python:3.9.5
+      - image: postgres:12.2-alpine
+        environment:
+          POSTGRES_USER: postgres
+          POSTGRES_DB: currency_exchange_app
+          POSTGRES_PASSWORD: password
 
     steps:
       - checkout

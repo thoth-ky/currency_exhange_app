@@ -1,6 +1,7 @@
 #!/bin/bash
-
-python manage.py collectstatic --no-input
+python manage.py makemigrations
 python manage.py migrate
+python manage.py collectstatic --no-input
 # collect static files
-gunicorn --worker-class gevent -w 4 -b "0.0.0.0:8000" currency_exchange_app.wsgi --log-level DEBUG
+python manage.py createsuperuser --username admin --noinput
+gunicorn currency_exchange_app.wsgi --log-file -

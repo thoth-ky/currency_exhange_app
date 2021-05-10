@@ -174,7 +174,7 @@ ACCOUNT_LOGOUT_REDIRECT_URL = "/accounts/login"
 # DJMoney
 
 DEFAULT_CURRENCY = "KES"
-OPEN_EXCHANGE_RATES_APP_ID = config("OPEN_EXCHANGE_RATES_APP_ID")
+OPEN_EXCHANGE_RATES_APP_ID = config("OPEN_EXCHANGE_RATES_APP_ID", default="")
 
 # Celery
 # https://docs.celeryproject.org/en/stable/django/first-steps-with-django.html
