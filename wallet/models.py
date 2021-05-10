@@ -54,7 +54,6 @@ class Wallet(TimeStampedModel):
         # amount is a DJMOney MOneyField, so it has a currency attribute and a amountattribute
         try:
             converted_amount = convert_money(amount, self.default_currency)
-            breakpoint()
             self.balance += converted_amount.amount
             res = self.save()
             return True
@@ -66,7 +65,6 @@ class Wallet(TimeStampedModel):
         # amount is a DJMOney MOneyField, so it has a currency attribute and a amountattribute
         try:
             converted_amount = convert_money(amount, self.default_currency)
-            breakpoint()
             self.balance -= converted_amount.amount
 
             res = self.save()

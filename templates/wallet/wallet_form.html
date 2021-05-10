@@ -1,15 +1,27 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <form method="POST" enctype="multipart/form-data">
+    <div class="mx-auto" style="margin-top: 4rem;">
+        <h3> Update Wallet</h3>
+        <br>
+        <form class="form-horizontal" method="POST" enctype="multipart/form-data">
 
-        <!-- Security token -->
-        {% csrf_token %}
+            <!-- Security token -->
+            {% csrf_token %}
 
-        <!-- Using the formset -->
-        {{ form.as_p }}
+            <!-- Using the formset -->
+            {% for field in form %}
+            <div class="form-group">
+                {{ field.errors }}
+                {{ field.label_tag }} {{ field }}
+                {% if field.help_text %}
+                <p class="help">{{ field.help_text|safe }}</p>
+                {% endif %}
+            </div>
+            {% endfor %}
 
-        <input type="submit" value="Submit">
-    </form>
+            <input type="submit" value="Submit">
+        </form>
+    </div>
 
 {% endblock content %}

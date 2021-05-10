@@ -13,7 +13,9 @@
 
     <div>
         <h4>Profile Pic</h4>
-        <img src="{{ object.profile_pic.url }}" alt="Profile Pic" width=200 height=200/>
+        {% if object.profile_pic %}
+            <img src="{{ object.profile_pic.url }}" alt="Profile Pic" width=200 height=200/>
+        {% endif %}
     </div>
 
     <div class="table-responsive">
