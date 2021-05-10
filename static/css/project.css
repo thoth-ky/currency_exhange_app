@@ -11,3 +11,8 @@
   background-color: #f2dede;
   border-color: #eed3d7;
 }
+
+#id_txn_amount_1 {
+  width: 20%;
+  margin: 4px;
+}
