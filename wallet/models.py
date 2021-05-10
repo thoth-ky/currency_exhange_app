@@ -25,7 +25,7 @@ class Wallet(models.Model):
     )
 
     def __str__(self):
-        return f"{self.user.username}- {self.default_currency}"
+        return f"{self.user.username} - {self.default_currency}"
 
     def credit(self, amount, currency_code):
         pass
