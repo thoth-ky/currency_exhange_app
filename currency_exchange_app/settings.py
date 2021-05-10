@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     "allauth",
     "allauth.account",
     "allauth.socialaccount",
+    "django_celery_results",
     "django_extensions",  # Needs to be in Dev/Local only
 ]
 
@@ -170,3 +171,11 @@ ACCOUNT_LOGOUT_REDIRECT_URL = "/accounts/login"
 # DJMoney
 
 DEFAULT_CURRENCY = "KES"
+OPEN_EXCHANGE_RATES_APP_ID = config("OPEN_EXCHANGE_RATES_APP_ID")
+
+# Celery
+# https://docs.celeryproject.org/en/stable/django/first-steps-with-django.html
+
+CELERY_BROKER_URL = config("CELERY_BROKER_URL", default="redis://localhost:6379/0")
+
+CELERY_RESULT_BACKEND = "django-db"

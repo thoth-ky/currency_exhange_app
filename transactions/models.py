@@ -1,7 +1,9 @@
 from django.contrib.auth import get_user_model
 from django.db import models
 from djmoney.models.fields import MoneyField
+from djmoney.models.validators import MinMoneyValidator
 
+from wallet.models import TimeStampedModel
 from wallet.models import Wallet
 
 
@@ -12,7 +14,7 @@ TRANSACTION_STATUS = (
 )
 
 
-class Transaction(models.Model):
+class Transaction(TimeStampedModel):
     source_wallet = models.ForeignKey(
         Wallet,
         on_delete=models.PROTECT,
@@ -31,6 +33,7 @@ class Transaction(models.Model):
         null=True,
         default_currency=None,
         verbose_name="Amount",
+        validators=[MinMoneyValidator(1)],
     )
     status = models.CharField(
         max_length=8, choices=TRANSACTION_STATUS, default="PENDING"
@@ -40,6 +43,9 @@ class Transaction(models.Model):
         help_text="Narration e.g Water Bill",
         verbose_name="Reason for Transfer",
     )
+
+    class Meta:
+        ordering = ["-created"]
 
     def __str__(self):
         return f"{self.source_wallet} to {self.target_wallet} #{self.txn_amount}"
