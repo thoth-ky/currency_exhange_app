@@ -49,7 +49,7 @@ INSTALLED_APPS = [
     "allauth.account",
     "allauth.socialaccount",
     "django_celery_results",
-    "django_extensions",  # Needs to be in Dev/Local only
+    # "django_extensions",  # Needs to be in Dev/Local only
 ]
 
 MIDDLEWARE = [
