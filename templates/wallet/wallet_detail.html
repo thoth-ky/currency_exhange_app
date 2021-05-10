@@ -3,7 +3,7 @@
 {% block content %}
     <h3>Wallet Name: {{ object.name}}</h3>
     <div>
-        <a class="primaryAction btn btn-primary" href="" >TransferFunds<a>
+        <a class="primaryAction btn btn-primary" href="{% url 'new_transaction' wallet_id=object.id %}" >TransferFunds<a>
         <a class="primaryAction btn btn-primary" href="{% url 'wallet_update' pk=object.id %}">Edit Wallet Details</a>
     </div>
 
@@ -14,6 +14,65 @@
     <div>
         <h4>Profile Pic</h4>
         <img src="{{ object.profile_pic.url }}" alt="Profile Pic" width=200 height=200/>
+    </div>
+
+    <div class="table-responsive">
+        <h4>Outgoing Transactions</h4>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Send To</th>
+                    <th>Amount</th>
+                    <th>Status</th>
+                    <th>Reference</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for txn in object.send.all %}
+                    <tr>
+                        <td>{{txn.id}}</td>
+                        <td>{{txn.target_wallet}}</td>
+                        <td>{{txn.txn_amount}}</td>
+                        <td>{{txn.status}}</td>
+                        <td>{{txn.reference}}</td>
+                    </tr>
+                    {% empty %}
+                    <hr/>
+                    <li>No outgoing transactions yet.</li>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <div class="table-responsive">
+        <h4>Incoming Transactions</h4>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Received From</th>
+                    <th>Amount</th>
+                    <th>Status</th>
+                    <th>Reference</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for txn in object.receive.all %}
+                    <tr>
+                        <td>{{txn.id}}</td>
+                        <td>{{txn.source_wallet}}</td>
+                        <td>{{txn.txn_amount}}</td>
+                        <td>{{txn.status}}</td>
+                        <td>{{txn.reference}}</td>
+
+                    </tr>
+
+                    {% empty %}
+                    <hr/>
+                    <li>No incoming transactions yet.</li>
+                {% endfor %}
+            </tbody>
+        </table>
     </div>
 
 {% endblock content %}

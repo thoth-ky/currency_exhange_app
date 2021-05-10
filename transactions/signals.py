@@ -22,7 +22,6 @@ def update_wallets(sender, **kwargs):
         if not credit_success:
             # reverse source debit
             instance.source_wallet.credit(instance.txn_amount)
-            breakpoint()
             instance.status = "DECLINED"
         else:
             instance.status = "SUCCESS"

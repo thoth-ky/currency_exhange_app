@@ -2,7 +2,6 @@ from django.contrib.auth.decorators import login_required
 from django.urls import reverse
 from django.utils.decorators import method_decorator
 from django.views.generic.detail import DetailView
-from django.views.generic.edit import CreateView
 from django.views.generic.edit import FormMixin
 from django.views.generic.edit import UpdateView
 from django.views.generic.list import ListView
