@@ -9,6 +9,7 @@ pytest = "*"
 pytest-cov = "*"
 pytest-django = "*"
 pre-commit = "*"
+django-extensions = "*"
 
 [packages]
 django = "==3.2.2"

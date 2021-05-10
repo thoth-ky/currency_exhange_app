@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block content %}
+    <ul>
+        <!-- Iterate over object_list -->
+        {% for object in object_list %}
+            <a href="{% url 'wallet_detail' pk=object.id %}">{{ object.name }}</a>
+            <li>{{ object.default_currency }}</li>
+            <li>{{ object.balance }}</li>
+
+            <hr/>
+            {% empty %}
+            <li>No wallets created for you yet.</li>
+        {% endfor %}
+    </ul>
+{% endblock content %}

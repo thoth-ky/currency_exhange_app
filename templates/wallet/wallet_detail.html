@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h3>Wallet Name: {{ object.name}}</h3>
+    <div>
+        <a class="primaryAction btn btn-primary" href="" >TransferFunds<a>
+        <a class="primaryAction btn btn-primary" href="{% url 'wallet_update' pk=object.id %}">Edit Wallet Details</a>
+    </div>
+
+    <div>
+        <p> <b> Balance: </b> {{ object.default_currency }} - {{ object.balance }}</p>
+    </div>
+
+    <div>
+        <h4>Profile Pic</h4>
+        <img src="{{ object.profile_pic.url }}" alt="Profile Pic" width=200 height=200/>
+    </div>
+
+{% endblock content %}

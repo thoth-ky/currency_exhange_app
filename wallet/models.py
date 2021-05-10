@@ -16,11 +16,19 @@ def get_sentinel_user():
 UserModel = get_user_model()
 # Create your models here.
 class Wallet(models.Model):
-    profile_pic = models.ImageField(upload_to="profiles/", null=True, blank=True)
-    default_currency = models.CharField(
-        max_length=3, choices=CURRENCY_CHOICES, default=DEFAULT_CURRENCY_CODE
+    name = models.CharField(max_length=25, verbose_name="Wallet Name")
+    profile_pic = models.ImageField(
+        upload_to="profiles/", null=True, blank=True, verbose_name="Profile Picture"
     )
-    user = models.ForeignKey(UserModel, on_delete=models.SET(get_sentinel_user))
+    default_currency = models.CharField(
+        max_length=3,
+        choices=CURRENCY_CHOICES,
+        default=DEFAULT_CURRENCY_CODE,
+        verbose_name="Default Currency",
+    )
+    user = models.ForeignKey(
+        UserModel, on_delete=models.SET(get_sentinel_user), related_name="wallets"
+    )
     balance = models.DecimalField(max_digits=19, decimal_places=4, default=0)
 
     def __str__(self):

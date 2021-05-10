@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     "allauth",
     "allauth.account",
     "allauth.socialaccount",
+    "django_extensions",
 ]
 
 MIDDLEWARE = [
@@ -162,7 +163,8 @@ AUTHENTICATION_BACKENDS = [
     "allauth.account.auth_backends.AuthenticationBackend",
 ]
 
-LOGIN_REDIRECT_URL = "/admin"  # Change this to '/wallet'
+LOGIN_REDIRECT_URL = "/wallet"  # Change this to '/wallet'
+ACCOUNT_LOGOUT_REDIRECT_URL = "/accounts/login"
 
 
 # DJMoney
