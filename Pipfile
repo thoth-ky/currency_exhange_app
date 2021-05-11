@@ -25,6 +25,7 @@ redis = "*"
 gunicorn = "*"
 whitenoise = "==5.2.0"
 gevent = "*"
+supervisor = "==4.2.2"
 
 [requires]
 python_version = "3.9"

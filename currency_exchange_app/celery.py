@@ -18,7 +18,7 @@ app.autodiscover_tasks()
 app.conf.beat_schedule = {
     "update_rates": {
         "task": "wallet.tasks.update_exchange_rates",
-        "schedule": crontab(minute=0, hour=0),
+        "schedule": crontab(),
         "kwargs": {},  # For custom arguments
     }
 }

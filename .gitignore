@@ -7,3 +7,6 @@ htmlcov/
 media/
 staticfiles/
 celerybeat-schedule.db
+*.log
+*.err
+*.pid

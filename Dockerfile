@@ -20,7 +20,7 @@ RUN pip3 install -r requirements.txt
 
 EXPOSE 8000
 
-# add and run as non-root user
+RUN rm /bin/sh && ln -s /bin/bash /bin/sh
 
 
 ENTRYPOINT [ "/bin/bash", "./docker-entrypoint.sh"]

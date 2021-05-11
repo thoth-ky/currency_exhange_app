@@ -13,3 +13,6 @@ README.md
 pytest.ini
 .coveragerc
 .circleci/*
+*.log
+*.err
+*.pid
