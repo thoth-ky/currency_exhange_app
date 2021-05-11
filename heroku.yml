@@ -1,9 +1,9 @@
 build:
   docker:
-    app: Dockerfile
+    web: Dockerfile
 
-# run:
-#   app: /bin/bash ./heroku-docker-entrypoint.sh
+run:
+  web: /bin/bash ./heroku-docker-entrypoint.sh
 # release:
 #   image: web
 #   command:

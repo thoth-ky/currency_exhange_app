@@ -10,7 +10,7 @@ RUN mkdir /app
 
 WORKDIR /app
 
-RUN apt-get update -y && apt-get upgrade -y && apt-get install build-essential curl -y
+RUN apt-get update -y && apt-get upgrade -y && apt-get install build-essential curl openssh-server -y
 
 COPY . /app/
 
@@ -25,4 +25,4 @@ ADD ./.profile.d /app/.profile.d
 RUN rm /bin/sh && ln -s /bin/bash /bin/sh
 
 
-ENTRYPOINT [ "/bin/bash", "./heroku-docker-entrypoint.sh"]
+# ENTRYPOINT [ "/bin/bash", "./docker-entrypoint.sh"]
