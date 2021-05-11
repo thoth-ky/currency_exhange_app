@@ -170,6 +170,7 @@ AUTHENTICATION_BACKENDS = [
 LOGIN_REDIRECT_URL = "/wallet"  # Change this to '/wallet'
 ACCOUNT_LOGOUT_REDIRECT_URL = "/accounts/login"
 
+ACCOUNT_EMAIL_VERIFICATION = "none"
 
 # DJMoney
 
