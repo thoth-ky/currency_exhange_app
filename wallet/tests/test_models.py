@@ -6,7 +6,7 @@ from wallet.tests import CoreBaseTestCase
 
 class WalletModelTestCase(CoreBaseTestCase):
     def test_dummy(self):
-        assert 1 == 1
+        assert Wallet.objects.count() == 2
 
     def test_can_credit_wallet(self):
         amount = Money(300, "KES")

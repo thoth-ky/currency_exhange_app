@@ -1,4 +1,5 @@
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import PermissionRequiredMixin
 from django.urls import reverse
 from django.utils.decorators import method_decorator
 from django.views.generic.detail import DetailView
@@ -12,7 +13,7 @@ from wallet.forms import WalletForm
 from wallet.models import Wallet
 
 
-class WalletDetail(FormMixin, DetailView):
+class WalletDetail(PermissionRequiredMixin, FormMixin, DetailView):
     model = Wallet
     form_class = WalletForm
     # template_name = 'wallet/wallet_form.html'
@@ -20,6 +21,9 @@ class WalletDetail(FormMixin, DetailView):
     @method_decorator(login_required)
     def dispatch(self, request, *args, **kwargs):
         return super().dispatch(request, *args, **kwargs)
+
+    def has_permission(self):
+        return self.get_object().user == self.request.user
 
 
 class WalletList(ListView):
@@ -33,7 +37,7 @@ class WalletList(ListView):
         return self.request.user.wallets.all()
 
 
-class WalletUpdate(UpdateView):
+class WalletUpdate(PermissionRequiredMixin, UpdateView):
 
     model = Wallet
     fields = ["name", "profile_pic", "default_currency"]
@@ -45,9 +49,13 @@ class WalletUpdate(UpdateView):
     def dispatch(self, request, *args, **kwargs):
         return super().dispatch(request, *args, **kwargs)
 
+    def has_permission(self):
+        return self.get_object().user == self.request.user
+
     def post(self, request, *args, **kwargs):
         self.object = self.get_object()
-        new_curr = request.POST.get("default_currency")
+        # breakpoint()
+        new_curr = request.POST.get("default_currency") or self.object.default_currency
         new_bal = convert_money(
             Money(self.object.balance, self.object.default_currency), new_curr
         )

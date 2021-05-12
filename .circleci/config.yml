@@ -25,4 +25,4 @@ jobs:
           pkg-manager: pipenv
       - run:
           command: |
-            pipenv run pytest
+            pipenv run pytest --createdb
