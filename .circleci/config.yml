@@ -21,8 +21,8 @@ jobs:
     steps:
       - checkout
       - python/install-packages:
-          args: pytest
+          args: 'pytest pytest-cov pytest-django'
           pkg-manager: pipenv
       - run:
           command: |
-            pipenv run pytest --createdb
+            pipenv run pytest

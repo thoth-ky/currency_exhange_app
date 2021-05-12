@@ -20,8 +20,9 @@ def update_wallets(sender, **kwargs):
             credit_success = instance.target_wallet.credit(instance.txn_amount)
 
         if not credit_success:
-            # reverse source debit
-            instance.source_wallet.credit(instance.txn_amount)
+            # reverse source debit if debit succeeded
+            if debit_success:
+                instance.source_wallet.credit(instance.txn_amount)
             instance.status = "DECLINED"
         else:
             instance.status = "SUCCESS"
