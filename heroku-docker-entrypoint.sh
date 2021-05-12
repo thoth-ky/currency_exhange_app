@@ -8,7 +8,7 @@ python manage.py migrate
 python manage.py collectstatic --no-input
 
 # collect static files
-# python manage.py createsuperuser --username admin --noinput
+python manage.py createsuperuser --username admin --noinput
 echo "Starting Supervisor"
 supervisord -c supervisord.conf
 supervisorctl -c supervisord.conf status all

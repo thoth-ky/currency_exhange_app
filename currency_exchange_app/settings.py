@@ -49,6 +49,7 @@ INSTALLED_APPS = [
     "allauth.account",
     "allauth.socialaccount",
     "django_celery_results",
+    "cloudinary",
     # "django_extensions",  # Needs to be in Dev/Local only
 ]
 
@@ -183,3 +184,6 @@ OPEN_EXCHANGE_RATES_APP_ID = config("OPEN_EXCHANGE_RATES_APP_ID", default="")
 CELERY_BROKER_URL = config("CELERY_BROKER_URL", default="redis://localhost:6379/0")
 
 CELERY_RESULT_BACKEND = "django-db"
+
+# Cloudinary
+CLOUDINARY_URL = config("CLOUDINARY_URL")

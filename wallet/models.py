@@ -1,3 +1,4 @@
+from cloudinary.models import CloudinaryField
 from django.contrib.auth import get_user_model
 from django.core.validators import MinValueValidator
 from django.db import models
@@ -28,9 +29,8 @@ UserModel = get_user_model()
 # Create your models here.
 class Wallet(TimeStampedModel):
     name = models.CharField(max_length=25, verbose_name="Wallet Name")
-    profile_pic = models.ImageField(
-        upload_to="profiles/", null=True, blank=True, verbose_name="Profile Picture"
-    )
+
+    profile_pic = CloudinaryField("profile_pic", null=True, blank=True)
     default_currency = models.CharField(
         max_length=3,
         choices=CURRENCY_CHOICES,
@@ -48,7 +48,7 @@ class Wallet(TimeStampedModel):
     )
 
     def __str__(self):
-        return f"{self.user.username} - {self.default_currency}"
+        return f"{self.name} {self.user.username}-{self.default_currency}"
 
     def credit(self, amount):
         # amount is a DJMOney MOneyField, so it has a currency attribute and a amountattribute

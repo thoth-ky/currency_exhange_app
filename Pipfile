@@ -26,6 +26,7 @@ gunicorn = "*"
 whitenoise = "==5.2.0"
 gevent = "*"
 supervisor = "==4.2.2"
+cloudinary = "*"
 
 [requires]
 python_version = "3.9"
