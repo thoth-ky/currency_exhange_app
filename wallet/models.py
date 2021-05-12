@@ -65,10 +65,11 @@ class Wallet(TimeStampedModel):
         # amount is a DJMOney MOneyField, so it has a currency attribute and a amountattribute
         try:
             converted_amount = convert_money(amount, self.default_currency)
-            self.balance -= converted_amount.amount
-
-            res = self.save()
-            return True
+            if converted_amount.amount < self.balance:
+                self.balance -= converted_amount.amount
+                res = self.save()
+                return True
+            return False
         except Exception as e:
             print(e.message)
             return False
