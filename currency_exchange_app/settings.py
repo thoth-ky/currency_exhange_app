@@ -186,4 +186,4 @@ CELERY_BROKER_URL = config("CELERY_BROKER_URL", default="redis://localhost:6379/
 CELERY_RESULT_BACKEND = "django-db"
 
 # Cloudinary
-CLOUDINARY_URL = config("CLOUDINARY_URL")
+CLOUDINARY_URL = config("CLOUDINARY_URL", default="")
