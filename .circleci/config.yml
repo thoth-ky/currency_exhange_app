@@ -25,4 +25,5 @@ jobs:
           pkg-manager: pipenv
       - run:
           command: |
+            pipenv run python manage.py collectstatic --no-input
             pipenv run pytest
