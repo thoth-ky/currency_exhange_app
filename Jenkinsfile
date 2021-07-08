@@ -1,14 +1,18 @@
 pipeline {
-  agent { label 'docker' }
-  
-  stages {
+  agent {
+    docker {
+      image 'python:3.9.5'
+    }
 
+  }
+  stages {
     stage('Test') {
       agent {
-        docker { 
+        docker {
           label 'docker'
-          image 'python:3.9.5' 
+          image 'python:3.9.5'
         }
+
       }
       steps {
         sh 'pip install -r requirements.txt'
