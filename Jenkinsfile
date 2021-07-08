@@ -1,11 +1,13 @@
 pipeline {
-  agent any
+  
+  agent {
+    docker { image 'python:3.9.5' }
+  }
   stages {
     stage('Test') {
       steps {
-        sh '''apt install python3-dev python3 -y && \\
-python3 install -r requirements.txt && \\
-python manage.py collectstatic --no-input'''
+        sh 'pip install -r requirements.txt'
+        sh 'python manage.py collectstatic --no-input'
       }
     }
 
